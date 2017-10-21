@@ -1,8 +1,9 @@
 class Perceptron(object):
-    def __init__(self, input_num, activator):
-        self.activator = activator
+    def __init__(self, input_num, activator_fun):
+        self.activator = activator_fun
         self.weights = [0.0] * input_num
         self.bias = 0.0
+        print("initial weight:{0}, bias:{1}".format(self.weights, self.bias))
 
     def __str__(self):
         '''
@@ -19,11 +20,7 @@ class Perceptron(object):
         # 把input_vec[x1,x2,x3...]和weights[w1,w2,w3,...]打包在一起
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
         # 然后利用map函数计算[x1*w1, x2*w2, x3*w3]
-        # 最后利用reduce求和
-        # sum_total = 0
-        # vec = input_vec
-        # for i in range(len(vec)):
-        #     sum_total = sum_total + vec[i] * self.weights[i]
+        # 最后利用sum求和
         zipped = list(zip(input_vec, self.weights))
         sum_total = sum(list(map(lambda x_y: x_y[0] * x_y[1], zipped)))
         return self.activator(sum_total + self.bias)
@@ -56,12 +53,14 @@ class Perceptron(object):
         # 把input_vec[x1,x2,x3,...]和weights[w1,w2,w3,...]打包在一起
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
         # 然后利用感知器规则更新权重
+        print("test", input_vec, output, label, "rate", rate)
         delta = label - output
         self.weights = list(map(
-            lambda x_w: x_w[1] + rate * delta * x_w[0],
+            lambda x_w: rate * delta * x_w[0] + x_w[1],
             zip(input_vec, self.weights)))
         # 更新bias
         self.bias += rate * delta
+        print(self.weights, self.bias, delta)
 
 
 def f_active_function(x):
@@ -101,3 +100,7 @@ if __name__ == '__main__':
     # 训练and感知器
     and_perception = train_and_perceptron()
     print(and_perception)
+    print(and_perception.predict([0, 0]))
+    print(and_perception.predict([1, 0]))
+    print(and_perception.predict([0, 1]))
+    print(and_perception.predict([1, 1]))
