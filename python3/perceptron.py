@@ -53,7 +53,7 @@ class Perceptron(object):
         # 把input_vec[x1,x2,x3,...]和weights[w1,w2,w3,...]打包在一起
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
         # 然后利用感知器规则更新权重
-        print("test", input_vec, output, label, "rate", rate)
+        print(input_vec, output, label, "rate", rate)
         delta = label - output
         self.weights = list(map(
             lambda x_w: rate * delta * x_w[0] + x_w[1],
@@ -79,7 +79,7 @@ def get_training_dataset():
     input_vecs = [[1, 1], [0, 0], [1, 0], [0, 1]]
     # 期望的输出列表，注意要与输入一一对应
     # [1,1] -> 1, [0,0] -> 0, [1,0] -> 0, [0,1] -> 0
-    labels = [1, 0, 0, 0]
+    labels = [1, 0, 1, 1]
     return input_vecs, labels
 
 
@@ -100,7 +100,7 @@ if __name__ == '__main__':
     # 训练and感知器
     and_perception = train_and_perceptron()
     print(and_perception)
-    print(and_perception.predict([0, 0]))
+    print("input value{0}, predict:{1}".format([0, 0], and_perception.predict([0, 0])))
     print(and_perception.predict([1, 0]))
     print(and_perception.predict([0, 1]))
     print(and_perception.predict([1, 1]))
