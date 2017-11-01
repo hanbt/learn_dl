@@ -5,6 +5,7 @@
 import random
 from numpy import *
 from functools import reduce
+import pandas as pd
 
 
 def sigmoid(inX):
@@ -263,20 +264,31 @@ def gradient_check(network, sample_feature, sample_label):
 
 
 def train_data_set():
-    normalizer = Normalizer()
-    data_set = []
-    labels = []
-    for i in range(0, 256, 8):
-        n = normalizer.norm(int(random.uniform(0, 256)))
-        data_set.append(n)
-        labels.append(n)
+    data = pd.read_csv('iris.data', header=None)
+    x, y = data[[0, 1, 2, 3]], pd.Categorical(data[4]).codes
+    data_set = [x.values.tolist()][0]
+    labels = _convert_label(y.tolist())
+    print(type(labels), labels)
+    print(data_set)
     return labels, data_set
+
+
+def _convert_label(lables):
+    new_list = []
+    for item in lables:
+        if item == 0:
+            new_list.append([0.9, 0.1, 0.1])
+        elif item == 1:
+            new_list.append([0.1, 0.9, 0.1])
+        elif item == 2:
+            new_list.append([0.1, 0.1, 0.9])
+    return new_list
 
 
 def train(network):
     assert isinstance(network, object)
     labels, data_set = train_data_set()
-    network.train(labels, data_set, 0.3, 50)
+    network.train(labels, data_set, 0.3, 100)
 
 
 def test(network, data):
@@ -305,9 +317,14 @@ def gradient_check_test():
 
 if __name__ == '__main__':
     # gradient_check_test()
-    # 设置神经网络初始化参数，初始化神经网络
-    net = Network([6, 4, 2])
-    print(net)
+    # 设置神经网络初始化参数，初始化神经网络,列表长度表示网络层数，每个数字表示每一层节点个数
+    test_samples = [5.4,3.4,1.7,0.2]
+    net = Network([4, 2, 3])
+    # print(net)
     train(net)
-    net.dump()
-    # correct_ratio(net)
+    # net.dump()
+    print(net.predict(test_samples))
+# print(net)
+# train(net)
+# net.dump()
+# correct_ratio(net)
