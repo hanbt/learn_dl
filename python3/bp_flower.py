@@ -318,13 +318,9 @@ def gradient_check_test():
 if __name__ == '__main__':
     # gradient_check_test()
     # 设置神经网络初始化参数，初始化神经网络,列表长度表示网络层数，每个数字表示每一层节点个数
-    test_samples = [5.4,3.4,1.7,0.2]
+    test_samples = [5.4, 3.4, 1.7, 0.2]
     net = Network([4, 2, 3])
     # print(net)
     train(net)
     # net.dump()
     print(net.predict(test_samples))
-# print(net)
-# train(net)
-# net.dump()
-# correct_ratio(net)
