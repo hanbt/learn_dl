@@ -273,6 +273,7 @@ def train_data_set():
     return labels, data_set
 
 
+# 把鸢尾花分类转化成ond-hot的三维数组
 def _convert_label(lables):
     new_list = []
     for item in lables:
