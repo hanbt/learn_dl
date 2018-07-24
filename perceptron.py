@@ -67,7 +67,7 @@ class Perceptron(object):
             lambda (x, w): w + rate * delta * x,
             zip(input_vec, self.weights))
         # 更新bias
-        self.bias += rate * delta
+        self.bias += self.bias + rate * delta
 
 
 def f(x):
