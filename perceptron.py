@@ -55,7 +55,7 @@ class Perceptron(object):
         """
         self.activator = activator
         # 权重向量初始化为0
-        self.weights = [0.0 for _ in range(input_num)]
+        self.weights = [0.0] * input_num
         # 偏置项初始化为0
         self.bias = 0.0
 
@@ -122,11 +122,11 @@ def get_training_dataset():
     """
     # 构建训练数据
     # 输入向量列表
-    input_vecs = [[1,1], [0,0], [1,0], [0,1]]
+    input_vecs = [[1, 1], [0, 0], [1, 0], [0, 1]]
     # 期望的输出列表，注意要与输入一一对应
     # [1,1] -> 1, [0,0] -> 0, [1,0] -> 0, [0,1] -> 0
     labels = [1, 0, 0, 0]
-    return input_vecs, labels    
+    return input_vecs, labels
 
 
 def train_and_perceptron():
@@ -142,7 +142,7 @@ def train_and_perceptron():
     return p
 
 
-if __name__ == '__main__': 
+if __name__ == '__main__':
     # 训练and感知器
     and_perception = train_and_perceptron()
     # 打印训练获得的权重
