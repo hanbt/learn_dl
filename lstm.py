@@ -251,9 +251,9 @@ class LstmLayer(object):
         Wfh_grad = np.dot(self.delta_f_list[t], h_prev)
         bf_grad = self.delta_f_list[t]
         Wih_grad = np.dot(self.delta_i_list[t], h_prev)
-        bi_grad = self.delta_f_list[t]
+        bi_grad = self.delta_i_list[t]
         Woh_grad = np.dot(self.delta_o_list[t], h_prev)
-        bo_grad = self.delta_f_list[t]
+        bo_grad = self.delta_o_list[t]
         Wch_grad = np.dot(self.delta_ct_list[t], h_prev)
         bc_grad = self.delta_ct_list[t]
         return Wfh_grad, bf_grad, Wih_grad, bi_grad, \
