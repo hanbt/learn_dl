@@ -54,7 +54,7 @@ class RecurrentLayer(object):
                 (self.state_width, 1)))
         self.delta_list.append(sensitivity_array)
         # 迭代计算每个时刻的误差项
-        for k in range(self.times - 1, 0, -1):
+        for k in range(self.times - 1, -1, -1):
             self.calc_delta_k(k, activator)
 
     def calc_delta_k(self, k, activator):
