@@ -1,0 +1,57 @@
+\documentclass[cn,11pt,twocol]{elegantbook}
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{animate}
+
+\lstset{
+    columns=fixed,       
+    numbers=left,                                        % 在左侧显示行号
+    frame=none,                                          % 不显示背景边框
+    backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+    keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+    numberstyle=\footnotesize\color{darkgray},           % 设定行号格式
+    commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+    stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+    showstringspaces=false,                              % 不显示字符串中的空格
+    language=Python,                                     % 设置语言
+}
+
+\title{深度学习：零基础入门}
+\subtitle{从零实现深度学习(Python版)}
+
+% \author{Bingtao Han\& Deans Yu}
+\author{Bingtao Han}
+\institute{Open Access}
+\date{\today}
+\version{0.09}
+
+\extrainfo{Victory won\rq t come to us unless we go to it. --- M. Moore}
+
+\logo{dl.jpg}
+\cover{cover3.jpg}
+% \logo{seulogo.png}
+% \cover{cover.jpg}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\mainmatter
+\hypersetup{pageanchor=true}
+
+
+\input{./chapter/perceptron.tex}
+\input{./chapter/linear_unit.tex}
+\input{./chapter/bp.tex}
+\input{./chapter/cnn.tex}
+\input{./chapter/rnn.tex}
+\input{./chapter/lstm.tex}
+\input{./chapter/recu.tex}
+% \input{./chapter/temp.tex}
+
+
+\end{document}
